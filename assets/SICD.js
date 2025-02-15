@@ -163,6 +163,12 @@ function showBrowserInfo(systemInfo) {
 /************************************************************************/
 /* Showing the operating system information
 /************************************************************************/
+function sanitize(input) {
+  var element = document.createElement('div');
+  element.innerText = input;
+  return element.innerHTML;
+}
+
 function showOpSysInfo(systemInfo) {
   var getCurrentPage = "Dashboard";
 
@@ -231,9 +237,9 @@ function showOpSysInfo(systemInfo) {
       '<div class="opsys-data">' +
       '<div class="' + condition.alertClass + '">' +
       '<img class="image-icon" src="' +
-      getImageSrc +
+      sanitize(getImageSrc) +
       '"/> ' +
-      systemInfo.os.name + " " + systemInfo.os.version +
+      sanitize(systemInfo.os.name) + " " + sanitize(systemInfo.os.version) +
       "</div>" +
       "</div>";
 
