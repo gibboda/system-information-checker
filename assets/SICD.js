@@ -206,159 +206,46 @@ function showOpSysInfo(systemInfo) {
 
   if (getCurrentPage.indexOf("Dashboard") > -1) {
     /* Build the operating systems notification */
-    if (opsys == "windows nt" && version == "10.0") {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else if (opsys == "windows nt" && version == "6.3") {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else if (opsys == "windows nt" && version == "6.2") {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-error">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else if (opsys == "windows nt" && version == "6.1") {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-warning">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else if (
-      opsys == "mac os x" &&
-      (version == "10.14.0" || version == "10.14")
-    ) {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else if (
-      opsys == "mac os x" &&
-      (version == "10.13.6" || version == "10.13")
-    ) {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else if (
-      (opsys == "mac os x" && version == "10.12.6") ||
-      version == "10.12"
-    ) {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else if (
-      opsys == "mac os x" &&
-      (version == "10.11.6" || version == "10.11")
-    ) {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-warning">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else if (
-      opsys == "mac os x" &&
-      (version == "10.10.5" || version == "10.10")
-    ) {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-warning">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    } else {
-      browserHTML =
-        '<div class="opsys-data">' +
-        '<div class="sys-alert-error  browser-pointer">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.os.name + " " + systemInfo.os.version +
-        "</div>" +
-        "</div>";
-    }
+    var osConditions = {
+      "windows nt 10.0": { alertClass: "sys-alert-success" },
+      "windows nt 6.3": { alertClass: "sys-alert-success" },
+      "windows nt 6.2": { alertClass: "sys-alert-error" },
+      "windows nt 6.1": { alertClass: "sys-alert-warning" },
+      "mac os x 10.14.0": { alertClass: "sys-alert-success" },
+      "mac os x 10.14": { alertClass: "sys-alert-success" },
+      "mac os x 10.13.6": { alertClass: "sys-alert-success" },
+      "mac os x 10.13": { alertClass: "sys-alert-success" },
+      "mac os x 10.12.6": { alertClass: "sys-alert-success" },
+      "mac os x 10.12": { alertClass: "sys-alert-success" },
+      "mac os x 10.11.6": { alertClass: "sys-alert-warning" },
+      "mac os x 10.11": { alertClass: "sys-alert-warning" },
+      "mac os x 10.10.5": { alertClass: "sys-alert-warning" },
+      "mac os x 10.10": { alertClass: "sys-alert-warning" },
+      default: { alertClass: "sys-alert-error" }
+    };
+
+    var condition = osConditions[opsys + " " + version] || osConditions.default;
+    browserHTML =
+      '<div class="opsys-data">' +
+      '<div class="' + condition.alertClass + '">' +
+      '<img class="image-icon" src="' +
+      getImageSrc +
+      '"/> ' +
+      systemInfo.os.name + " " + systemInfo.os.version +
+      "</div>" +
+      "</div>";
 
     /* Actually add the browser notification to the current view */
     $(".opsys-info").append(browserHTML);
   }
 
-  if (opsys == "windows nt" && version >= "10.0") {
-    $(".opsys-data").show();
-  } else if (opsys == "windows nt" && version == "6.3") {
-    $(".opsys-data").show();
-  } else if (opsys == "windows nt" && version == "6.2") {
-    $(".opsys-data").show();
-  } else if (opsys == "windows nt" && version == "6.1") {
-    $(".opsys-data").show();
-  } else if (
-    opsys == "mac os x" &&
-    (version == "10.14.0" || version == "10.14")
-  ) {
-    $(".opsys-data").show();
-  } else if (
-    opsys == "mac os x" &&
-    (version == "10.13.6" || version == "10.13")
-  ) {
-    $(".opsys-data").show();
-  } else if (
-    opsys == "mac os x" &&
-    (version == "10.12.6" || version == "10.12")
-  ) {
-    $(".opsys-data").show();
-  } else if (
-    opsys == "mac os x" &&
-    (version == "10.11.6" || version == "10.11")
-  ) {
-    $(".opsys-data").show();
-  } else if (
-    opsys == "mac os x" &&
-    (version == "10.10.5" || version == "10.10")
-  ) {
+  var versionConditions = {
+    "windows nt": "10.0",
+    "mac os x": "10.14.0",
+    default: "0"
+  };
+
+  if (version >= (versionConditions[opsys] || versionConditions.default)) {
     $(".opsys-data").show();
   } else {
     $(".opsys-data").show();
