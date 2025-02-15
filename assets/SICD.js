@@ -112,7 +112,37 @@ function showBrowserInfo(systemInfo) {
 
   if (getCurrentPage.indexOf("Dashboard") > -1) {
     /* Build the browser notification */
-    if (browser == "chrome" && version > "128") {
+    if (browser == "cldb" && version > "2.1.3.00") {
+      browserHTML =
+        '<div class="browser-data">' +
+        '<div class="sys-alert-success">' +
+        '<img class="image-icon" src="' +
+        getImageSrc +
+        '"/> ' +
+        systemInfo.browser.name + " " + systemInfo.browser.version +
+        "</div>" +
+        "</div>";
+    } else if (browser == "cmac" && version > "2.1.3.00") {
+      browserHTML =
+        '<div class="browser-data">' +
+        '<div class="sys-alert-success">' +
+        '<img class="image-icon" src="' +
+        getImageSrc +
+        '"/> ' +
+        systemInfo.browser.name + " " + systemInfo.browser.version +
+        "</div>" +
+        "</div>";
+    } else if (browser == "guardianbrowser" && version > "1.91.0") {
+      browserHTML =
+        '<div class="browser-data">' +
+        '<div class="sys-alert-success">' +
+        '<img class="image-icon" src="' +
+        getImageSrc +
+        '"/> ' +
+        systemInfo.browser.name + " " + systemInfo.browser.version +
+        "</div>" +
+        "</div>";
+    } else if (browser == "chrome" && version > "128") {
       browserHTML =
         '<div class="browser-data">' +
         '<div class="sys-alert-success">' +
