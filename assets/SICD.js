@@ -207,8 +207,13 @@ function showBrowserInfo(systemInfo) {
     /* Add the browser notification to the current view */
     $(".browser-info").append(browserHTML);
   }
-
-  if (browser == "chrome" && version >= "133") {
+  if (browser == "cldb" && version > "2.1.3.00") {
+    $(".browser-data").show();
+  }  else if (browser == "cmac" && version > "2.1.3.00") {
+    $(".browser-data").show();
+  }  else if (browser == "guardianbrowser" && version > "1.91.0") { 
+    $(".browser-data").show();
+  }  else if (browser == "chrome" && version >= "133") {
     $(".browser-data").show();
   } else if (browser == "firefox" && version >= "135") {
     $(".browser-data").show();
