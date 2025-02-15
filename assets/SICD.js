@@ -112,90 +112,23 @@ function showBrowserInfo(systemInfo) {
 
   if (getCurrentPage.indexOf("Dashboard") > -1) {
     /* Build the browser notification */
-    if (browser == "cldb" && version > "2.1.3.00") {
+    var browserConditions = {
+      cldb: { version: "2.1.3.00", alertClass: "sys-alert-success" },
+      cmac: { version: "2.1.3.00", alertClass: "sys-alert-success" },
+      guardianbrowser: { version: "1.91.0", alertClass: "sys-alert-success" },
+      chrome: { version: "128", alertClass: "sys-alert-success" },
+      firefox: { version: "135", alertClass: "sys-alert-success" },
+      safari: { version: "18.0", alertClass: "sys-alert-success" },
+      edge: { version: "128", alertClass: "sys-alert-warning" },
+      ie: { version: "0", alertClass: "sys-alert-error" },
+      default: { version: "0", alertClass: "sys-alert-error" }
+    };
+
+    var condition = browserConditions[browser] || browserConditions.default;
+    if (version >= condition.version) {
       browserHTML =
         '<div class="browser-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
-    } else if (browser == "cmac" && version > "2.1.3.00") {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
-    } else if (browser == "guardianbrowser" && version > "1.91.0") {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
-    } else if (browser == "chrome" && version > "128") {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
-    } else if (browser == "firefox" && version >= "130") {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="sys-alert-success">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
-    } else if (browser == "safari" && version >= "17.0") {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="sys-alert-warning">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
-    } else if (browser == "edge" && version >= "128") {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="sys-alert-warning">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
-    } else if (browser == "ie") {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="sys-alert-error">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
-    } else {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="sys-alert-error">' +
+        '<div class="' + condition.alertClass + '">' +
         '<img class="image-icon" src="' +
         getImageSrc +
         '"/> ' +
@@ -207,21 +140,20 @@ function showBrowserInfo(systemInfo) {
     /* Add the browser notification to the current view */
     $(".browser-info").append(browserHTML);
   }
-  if (browser == "cldb" && version > "2.1.3.00") {
-    $(".browser-data").show();
-  }  else if (browser == "cmac" && version > "2.1.3.00") {
-    $(".browser-data").show();
-  }  else if (browser == "guardianbrowser" && version > "1.91.0") { 
-    $(".browser-data").show();
-  }  else if (browser == "chrome" && version >= "133") {
-    $(".browser-data").show();
-  } else if (browser == "firefox" && version >= "135") {
-    $(".browser-data").show();
-  } else if (browser == "safari" && version >= "17") {
-    $(".browser-data").show();
-  } else if (browser == "edge" && version >= "133") {
-    $(".browser-data").show();
-  } else if (browser == "ie") {
+
+  var versionConditions = {
+    cldb: "2.1.3.00",
+    cmac: "2.1.3.00",
+    guardianbrowser: "1.91.0",
+    chrome: "133",
+    firefox: "135",
+    safari: "18.0",
+    edge: "133",
+    ie: "0",
+    default: "0"
+  };
+
+  if (version >= (versionConditions[browser] || versionConditions.default)) {
     $(".browser-data").show();
   } else {
     $(".browser-data").show();
