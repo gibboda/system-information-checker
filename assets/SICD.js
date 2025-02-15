@@ -248,7 +248,7 @@ function showOpSysInfo(systemInfo) {
 
   var versionConditions = {
     "windows nt": "10.0",
-    "mac os x": "10.14.0",
+    "mac os x": "13.0.0",
     default: "0"
   };
 
