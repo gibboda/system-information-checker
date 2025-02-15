@@ -14,46 +14,30 @@ var getCurrentPage = document.getElementsByTagName("title")[0].innerHTML;
  */
 function getSystemInfo() {
   var ua = navigator.userAgent,
-    tem,
-    M = [],
     browserInfo = {},
     osInfo = {};
 
   console.log("User Agent: " + ua);
 
-  // Check for specialized browsers first
-  M = ua.match(/(cldb|cmac|guardianbrowser)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i) || [];
-  if (M.length) {
-    browserInfo.name = M[1];
-    browserInfo.version = M[2] || "undefined";
-  }
+  // Define a list of browser patterns to check
+  var browserPatterns = [
+    { name: "cldb", pattern: /(cldb)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
+    { name: "cmac", pattern: /(cmac)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
+    { name: "guardianbrowser", pattern: /(guardianbrowser)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i },
+    { name: "Edge", pattern: /(Edg|Edge)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i },
+    { name: "Chrome", pattern: /(chrome|crios)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i },
+    { name: "Safari", pattern: /version\/((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+)).*safari/i },
+    { name: "Firefox", pattern: /(firefox)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i }
+  ];
 
-  // Check for Edge/Edg
-  M = ua.match(/(Edg|Edge)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i) || [];
-  if (M.length) {
-    browserInfo.name = M[1];
-    browserInfo.version = M[2] || "undefined";
-  }
-
-  // Check for Chrome
-  M = ua.match(/(chrome|crios)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i) || [];
-  if (M.length) {
-    browserInfo.name = "Chrome";
-    browserInfo.version = M[2] || "undefined";
-  }
-
-  // Check for Safari
-  M = ua.match(/version\/((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+)).*safari/i) || [];
-  if (M.length) {
-    browserInfo.name = "Safari";
-    browserInfo.version = M[1] || "undefined";
-  }
-
-  // Check for Firefox
-  M = ua.match(/(firefox)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i) || [];
-  if (M.length) {
-    browserInfo.name = "Firefox";
-    browserInfo.version = M[2] || "undefined";
+  // Check for browser match
+  for (var i = 0; i < browserPatterns.length; i++) {
+    var match = ua.match(browserPatterns[i].pattern);
+    if (match) {
+      browserInfo.name = browserPatterns[i].name;
+      browserInfo.version = match[2] || "undefined";
+      break;
+    }
   }
 
   // If no browser match is found
@@ -63,10 +47,10 @@ function getSystemInfo() {
   }
 
   // Get OS information
-  M = ua.match(/(Windows NT|Mac OS X|iPhone OS)\s*((\d+\.\d+)|(\d+\_\d+)|(\d+\_\d+\_\d+))/i) || [];
-  if (M.length) {
-    osInfo.name = M[1];
-    osInfo.version = M[2].replace(/_/g, ".") || "undefined";
+  var osMatch = ua.match(/(Windows NT|Mac OS X|iPhone OS)\s*((\d+\.\d+)|(\d+\_\d+)|(\d+\_\d+\_\d+))/i) || [];
+  if (osMatch.length) {
+    osInfo.name = osMatch[1];
+    osInfo.version = osMatch[2].replace(/_/g, ".") || "undefined";
   } else {
     osInfo.name = "undefined";
     osInfo.version = "undefined";
