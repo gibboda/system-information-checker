@@ -208,13 +208,13 @@ function showBrowserInfo(systemInfo) {
     $(".browser-info").append(browserHTML);
   }
 
-  if (browser == "chrome" && version >= "70") {
+  if (browser == "chrome" && version >= "133") {
     $(".browser-data").show();
-  } else if (browser == "firefox" && version >= "61") {
+  } else if (browser == "firefox" && version >= "135") {
     $(".browser-data").show();
-  } else if (browser == "safari" && version >= "11") {
+  } else if (browser == "safari" && version >= "17") {
     $(".browser-data").show();
-  } else if (browser == "edge" && version >= "17") {
+  } else if (browser == "edge" && version >= "133") {
     $(".browser-data").show();
   } else if (browser == "ie") {
     $(".browser-data").show();
