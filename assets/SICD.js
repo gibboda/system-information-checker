@@ -132,7 +132,7 @@ function showBrowserInfo(systemInfo) {
         systemInfo.browser.name + " " + systemInfo.browser.version +
         "</div>" +
         "</div>";
-    } else if (browser == "safari" && version >= "11.0") {
+    } else if (browser == "safari" && version >= "17.0") {
       browserHTML =
         '<div class="browser-data">' +
         '<div class="sys-alert-warning">' +
