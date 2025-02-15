@@ -1,6 +1,17 @@
-/* Get the Current Page Element for System Information Checker */
+/**
+ * System Information Checker Dashboard
+ * Get the Current Page Element for System Information Checker
+ * Originally created on 2007-10-18
+ * Recreated and Revision on 2025-02-14
+ * Last Updated on 2025-02-15
+ * Created by: Dona Gibbons
+ */
 var getCurrentPage = document.getElementsByTagName("title")[0].innerHTML;
-/*  Getting the information on which web browser using the userAgent function. */
+
+/**
+ * Gets the system information including browser and OS details.
+ * @returns {Object} An object containing browser and OS information.
+ */
 function getSystemInfo() {
   var ua = navigator.userAgent,
     tem,
@@ -94,9 +105,10 @@ var icons = {
   "macosx10.10": "images/Operating_Systems/OS_X_Yosemite.png"
 };
 
-/************************************************************************/
-/*  Showing the web browser information
-/************************************************************************/
+/**
+ * Displays the browser information on the dashboard.
+ * @param {Object} systemInfo - The system information object containing browser and OS details.
+ */
 function showBrowserInfo(systemInfo) {
   var getCurrentPage = "Dashboard";
 
@@ -160,15 +172,21 @@ function showBrowserInfo(systemInfo) {
   }
 }
 
-/************************************************************************/
-/* Showing the operating system information
-/************************************************************************/
+/**
+ * Sanitizes input to prevent XSS attacks.
+ * @param {string} input - The input string to sanitize.
+ * @returns {string} The sanitized string.
+ */
 function sanitize(input) {
   var element = document.createElement('div');
   element.innerText = input;
   return element.innerHTML;
 }
 
+/**
+ * Displays the operating system information on the dashboard.
+ * @param {Object} systemInfo - The system information object containing browser and OS details.
+ */
 function showOpSysInfo(systemInfo) {
   var getCurrentPage = "Dashboard";
 
@@ -260,9 +278,9 @@ function showOpSysInfo(systemInfo) {
   }
 }
 
-/************************************************************************/
-/* Loading on the main page
-/************************************************************************/
+/**
+ * Initializes the system information checker on document ready.
+ */
 $(document).ready(function () {
   var systemInfo = getSystemInfo();
   showBrowserInfo(systemInfo);
