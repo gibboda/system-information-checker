@@ -3,7 +3,7 @@
  * Get the Current Page Element for System Information Checker
  * Originally created on 2007-10-18
  * Recreated and Revision on 2025-02-14
- * Last Updated on 2025-02-15
+ * Last Updated on 2025-12-11
  * Created by: Dona Gibbons
  */
 var getCurrentPage = document.getElementsByTagName("title")[0].innerHTML;
