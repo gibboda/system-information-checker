@@ -1,0 +1,21 @@
+name: Bump version on push
+
+on:
+  push:
+    branches:
+      - '**'
+
+jobs:
+  bump:
+    if: github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Run bump script
+        run: |
+          chmod +x .github/scripts/bump_version.sh
+          ./.github/scripts/bump_version.sh
