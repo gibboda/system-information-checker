@@ -23,7 +23,7 @@ function getSystemInfo() {
   var browserPatterns = [
     { name: "cldb", pattern: /(cldb)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
     { name: "cmac", pattern: /(cmac)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
-    { name: "guardianbrowser", pattern: /(guardianbrowser)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+.\d+))/i },
+    { name: "guardianbrowser", pattern: /(guardianbrowser)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+\.\d+))/i },
     { name: "Edge", pattern: /(Edg|Edge)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
     { name: "Chrome", pattern: /(chrome|crios)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
     { name: "Safari", pattern: /version\/((\d+\.\d+\.\d+\.\d+)).*safari/i },
