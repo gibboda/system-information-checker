@@ -20,11 +20,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## Earlier Versions
 
-### [February 15, 2025]
-- Last updated before version tracking
-
-### [February 14, 2025]
-- Recreated and revised the System Information Checker Dashboard
-
-### [October 18, 2007]
-- Originally created by Dona Gibbons
+### Prior to version tracking
+- February 15, 2025: Last updated before version tracking
+- February 14, 2025: Recreated and revised the System Information Checker Dashboard
+- October 18, 2007: Originally created by Dona Gibbons
