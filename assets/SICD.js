@@ -77,6 +77,8 @@ function isVersionAtLeast(currentVersion, minimumVersion) {
   for (i = 0; i < maxLength; i++) {
     var currentPart = parseInt(currentParts[i] || "0", 10);
     var minimumPart = parseInt(minimumParts[i] || "0", 10);
+    if (isNaN(currentPart)) { currentPart = 0; }
+    if (isNaN(minimumPart)) { minimumPart = 0; }
 
     if (currentPart > minimumPart) {
       return true;
@@ -169,23 +171,7 @@ function showBrowserInfo(systemInfo) {
     $(".browser-info").append(browserHTML);
   }
 
-  var versionConditions = {
-    cldb: "2.1.3.00",
-    cmac: "2.1.3.00",
-    guardianbrowser: "1.91.0",
-    chrome: "133",
-    firefox: "135",
-    safari: "18.0",
-    edge: "133",
-    ie: "0",
-    default: "0"
-  };
-
-  if (isVersionAtLeast(version, versionConditions[browser] || versionConditions.default)) {
-    $(".browser-data").show();
-  } else {
-    $(".browser-data").show();
-  }
+  $(".browser-data").show();
 }
 
 /**
@@ -281,17 +267,7 @@ function showOpSysInfo(systemInfo) {
     $(".opsys-info").append(browserHTML);
   }
 
-  var versionConditions = {
-    "windows nt": "10.0",
-    "mac os x": "13.0.0",
-    default: "0"
-  };
-
-  if (isVersionAtLeast(version, versionConditions[opsys] || versionConditions.default)) {
-    $(".opsys-data").show();
-  } else {
-    $(".opsys-data").show();
-  }
+  $(".opsys-data").show();
 }
 
 /**
