@@ -171,18 +171,6 @@ function showBrowserInfo(systemInfo) {
     $(".browser-info").append(browserHTML);
   }
 
-  var versionConditions = {
-    cldb: "2.1.3.00",
-    cmac: "2.1.3.00",
-    guardianbrowser: "1.91.0",
-    chrome: "133",
-    firefox: "135",
-    safari: "18.0",
-    edge: "133",
-    ie: "0",
-    default: "0"
-  };
-
   $(".browser-data").show();
 }
 
@@ -278,12 +266,6 @@ function showOpSysInfo(systemInfo) {
     /* Actually add the browser notification to the current view */
     $(".opsys-info").append(browserHTML);
   }
-
-  var versionConditions = {
-    "windows nt": "10.0",
-    "mac os x": "13.0.0",
-    default: "0"
-  };
 
   $(".opsys-data").show();
 }

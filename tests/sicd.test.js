@@ -66,6 +66,10 @@ function loadScript(userAgent) {
   assert.strictEqual(context.isVersionAtLeast('99.0.4844.51', '128'), false, 'Chrome 99 should not satisfy Chrome 128 minimum');
   assert.strictEqual(context.isVersionAtLeast('128.0.1', '128'), true, 'Chrome 128 should satisfy Chrome 128 minimum');
   assert.strictEqual(context.isVersionAtLeast('18.0', '18.0.1'), false, 'Safari 18.0 should not satisfy Safari 18.0.1 minimum');
+  assert.strictEqual(context.isVersionAtLeast('undefined', '1'), false, 'Unknown version string should not satisfy a non-zero minimum');
+  assert.strictEqual(context.isVersionAtLeast('undefined', '0'), true, 'Unknown version string normalized to 0 should satisfy a 0 minimum');
+  assert.strictEqual(context.isVersionAtLeast('NaN', '1'), false, 'NaN version string should not satisfy a non-zero minimum');
+  assert.strictEqual(context.isVersionAtLeast('', '1'), false, 'Empty version string should not satisfy a non-zero minimum');
 })();
 
 (function testUnsupportedBrowserRendersErrorState() {
