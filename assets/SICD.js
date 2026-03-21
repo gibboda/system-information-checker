@@ -62,6 +62,36 @@ function getSystemInfo() {
   };
 }
 
+/**
+ * Compares dotted version strings numerically instead of lexicographically.
+ * @param {string} currentVersion - The detected version string.
+ * @param {string} minimumVersion - The minimum supported version string.
+ * @returns {boolean} True when currentVersion is greater than or equal to minimumVersion.
+ */
+function isVersionAtLeast(currentVersion, minimumVersion) {
+  var currentParts = String(currentVersion || "0").split(".");
+  var minimumParts = String(minimumVersion || "0").split(".");
+  var maxLength = Math.max(currentParts.length, minimumParts.length);
+  var i;
+
+  for (i = 0; i < maxLength; i++) {
+    var currentPart = parseInt(currentParts[i] || "0", 10);
+    var minimumPart = parseInt(minimumParts[i] || "0", 10);
+    if (isNaN(currentPart)) { currentPart = 0; }
+    if (isNaN(minimumPart)) { minimumPart = 0; }
+
+    if (currentPart > minimumPart) {
+      return true;
+    }
+
+    if (currentPart < minimumPart) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
 // Combined icons object
 var icons = {
   safari: "https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/safari/safari.svg",
@@ -74,19 +104,19 @@ var icons = {
   cmac: "https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/chrome/chrome.svg",
   guardianbrowser: "https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/chrome/chrome.svg",
   undefined: "https://cdnjs.cloudflare.com/ajax/libs/browser-logos/75.0.1/webkit/webkit.svg",
-  "windowsnt10.0": "images/Operating_Systems/Windows_10.png",
-  "windowsnt6.3": "images/Operating_Systems/Windows_8.png",
-  "windowsnt6.1": "images/Operating_Systems/Windows_7.png",
-  "macosx10.14.0": "images/Operating_Systems/OS_X_Majove.png",
-  "macosx10.13.6": "images/Operating_Systems/OS_X_High_Sierra.png",
-  "macosx10.12.6": "images/Operating_Systems/OS_X_Sierra.png",
-  "macosx10.11.6": "images/Operating_Systems/OS_X_EL_Capitan.png",
-  "macosx10.10.5": "images/Operating_Systems/OS_X_Yosemite.png",
-  "macosx10.14": "images/Operating_Systems/OS_X_Majove.png",
-  "macosx10.13": "images/Operating_Systems/OS_X_High_Sierra.png",
-  "macosx10.12": "images/Operating_Systems/OS_X_Sierra.png",
-  "macosx10.11": "images/Operating_Systems/OS_X_EL_Capitan.png",
-  "macosx10.10": "images/Operating_Systems/OS_X_Yosemite.png"
+  "windowsnt10.0": "images/operating_systems/Windows_10.png",
+  "windowsnt6.3": "images/operating_systems/Windows_8.png",
+  "windowsnt6.1": "images/operating_systems/Windows_7.png",
+  "macosx10.14.0": "images/operating_systems/OS_X_Majove.png",
+  "macosx10.13.6": "images/operating_systems/OS_X_High_Sierra.png",
+  "macosx10.12.6": "images/operating_systems/OS_X_Sierra.png",
+  "macosx10.11.6": "images/operating_systems/OS_X_EL_Capitan.png",
+  "macosx10.10.5": "images/operating_systems/OS_X_Yosemite.png",
+  "macosx10.14": "images/operating_systems/OS_X_Majove.png",
+  "macosx10.13": "images/operating_systems/OS_X_High_Sierra.png",
+  "macosx10.12": "images/operating_systems/OS_X_Sierra.png",
+  "macosx10.11": "images/operating_systems/OS_X_EL_Capitan.png",
+  "macosx10.10": "images/operating_systems/OS_X_Yosemite.png"
 };
 
 /**
@@ -121,39 +151,27 @@ function showBrowserInfo(systemInfo) {
     };
 
     var condition = browserConditions[browser] || browserConditions.default;
-    if (version >= condition.version) {
-      browserHTML =
-        '<div class="browser-data">' +
-        '<div class="' + condition.alertClass + '">' +
-        '<img class="image-icon" src="' +
-        getImageSrc +
-        '"/> ' +
-        systemInfo.browser.name + " " + systemInfo.browser.version +
-        "</div>" +
-        "</div>";
+    var browserAlertClass = condition.alertClass;
+
+    if (!isVersionAtLeast(version, condition.version)) {
+      browserAlertClass = "sys-alert-error";
     }
+
+    browserHTML =
+      '<div class="browser-data">' +
+      '<div class="' + browserAlertClass + '">' +
+      '<img class="image-icon" src="' +
+      getImageSrc +
+      '"/> ' +
+      systemInfo.browser.name + " " + systemInfo.browser.version +
+      "</div>" +
+      "</div>";
 
     /* Add the browser notification to the current view */
     $(".browser-info").append(browserHTML);
   }
 
-  var versionConditions = {
-    cldb: "2.1.3.00",
-    cmac: "2.1.3.00",
-    guardianbrowser: "1.91.0",
-    chrome: "133",
-    firefox: "135",
-    safari: "18.0",
-    edge: "133",
-    ie: "0",
-    default: "0"
-  };
-
-  if (version >= (versionConditions[browser] || versionConditions.default)) {
-    $(".browser-data").show();
-  } else {
-    $(".browser-data").show();
-  }
+  $(".browser-data").show();
 }
 
 /**
@@ -249,17 +267,7 @@ function showOpSysInfo(systemInfo) {
     $(".opsys-info").append(browserHTML);
   }
 
-  var versionConditions = {
-    "windows nt": "10.0",
-    "mac os x": "13.0.0",
-    default: "0"
-  };
-
-  if (version >= (versionConditions[opsys] || versionConditions.default)) {
-    $(".opsys-data").show();
-  } else {
-    $(".opsys-data").show();
-  }
+  $(".opsys-data").show();
 }
 
 /**
