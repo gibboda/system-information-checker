@@ -113,7 +113,9 @@ function loadScript(userAgent) {
   });
   const deployWorkflows = files.filter(function (f) {
     const content = fs.readFileSync(path.join(workflowsDir, f), 'utf8');
-    return content.includes('actions/deploy-pages');
+    return content.split(/\r?\n/).some(function (line) {
+      return /^\s*uses:\s*actions\/deploy-pages@/.test(line);
+    });
   });
   assert.strictEqual(deployWorkflows.length, 1, 'There should be exactly one deployment workflow using actions/deploy-pages');
 })();
