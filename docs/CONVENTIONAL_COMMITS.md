@@ -14,7 +14,7 @@ git log --oneline --decorate -n 30
 
 ## Findings
 
-Several commit messages use free-form summaries instead of the Conventional Commits format (`type(scope?): description`). Examples from the recent history include:
+Several commit messages use free-form summaries instead of the Conventional Commits format (`type: description` or `type(scope): description`). Examples from the recent history include:
 
 - `Remove dead versionConditions blocks and add NaN/unknown version test cases`
 - `Create index.html`
@@ -34,16 +34,17 @@ While some of these messages are descriptive, they do not use the Conventional C
 If the project wants to adopt Conventional Commits, future commit messages should follow this pattern:
 
 ```text
-type(scope?): short description
+type: short description
+type(scope): short description
 ```
 
-The `scope` is optional. To mark a breaking change, append `!` before the colon:
+The `(scope)` segment is optional. To mark a breaking change, append `!` before the colon:
 
 ```text
 feat(api)!: remove deprecated endpoint
 ```
 
-A `BREAKING CHANGE:` footer in the commit body can also be used to describe the change.
+A `BREAKING CHANGE:` or `BREAKING-CHANGE:` footer in the commit body can also be used to describe the change.
 
 Common types:
 
