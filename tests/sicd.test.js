@@ -91,4 +91,18 @@ function loadScript(userAgent) {
   );
 })();
 
+
+(function testIndexHtmlMatchesSicdEntryPoint() {
+  const indexHtml = fs.readFileSync(path.join(__dirname, '..', 'index.html'), 'utf8');
+  const sicdHtml = fs.readFileSync(path.join(__dirname, '..', 'SICD.html'), 'utf8');
+
+  assert.ok(indexHtml.includes('<title>System Information Checker Dashboard</title>'), 'index.html should expose the SICD dashboard title');
+  assert.ok(indexHtml.includes('assets/SICD.css'), 'index.html should load the SICD stylesheet');
+  assert.ok(indexHtml.includes('https://code.jquery.com/jquery-3.7.1.min.js'), 'index.html should load jQuery required by SICD.js');
+  assert.ok(indexHtml.includes('assets/SICD.js'), 'index.html should load the SICD script');
+  assert.ok(indexHtml.includes('<div class="browser-info">'), 'index.html should include the browser info mount point');
+  assert.ok(indexHtml.includes('<div class="opsys-info">'), 'index.html should include the operating system info mount point');
+  assert.strictEqual(indexHtml.replace(/\r\n/g, '\n').trim(), sicdHtml.replace(/\r\n/g, '\n').trim(), 'index.html should mirror SICD.html so the default route renders the dashboard');
+})();
+
 console.log('All SICD.js tests passed.');
