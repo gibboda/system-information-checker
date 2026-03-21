@@ -1,8 +1,9 @@
 const fs = require('fs');
+const path = require('path');
 const vm = require('vm');
 const assert = require('assert');
 
-const source = fs.readFileSync('assets/SICD.js', 'utf8');
+const source = fs.readFileSync(path.join(__dirname, '..', 'assets', 'SICD.js'), 'utf8');
 
 function loadScript(userAgent) {
   const browserInfoHtml = [];
