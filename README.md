@@ -103,6 +103,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 Contributions are welcome! Please feel free to submit a Pull Request.
 
+All contributor-authored commits, including commits created by Copilot and Codex, must follow the Conventional Commits standard. The repository enforces this in CI for pushes and pull requests, and automated version bumps also use the Conventional Commit form `chore(release): bump version to x.y.z [skip ci]`. See `docs/CONVENTIONAL_COMMITS.md` for the repository-specific policy.
+
 ## Support
 
 For issues, questions, or suggestions, please open an issue on the GitHub repository.
@@ -110,7 +112,7 @@ For issues, questions, or suggestions, please open an issue on the GitHub reposi
 ## Versioning
 
 - The project stores the current semantic version in `version.txt` at the repository root.
-- A GitHub Actions workflow (`.github/workflows/bump-version.yml`) runs on every push and will automatically bump the patch version (e.g. `0.1.0` → `0.1.1`), commit the change, and push it back to the repository.
+- A GitHub Actions workflow (`.github/workflows/bump-version.yml`) runs on every push and will automatically bump the patch version (e.g. `0.1.0` → `0.1.1`), commit the change with a Conventional Commit (`chore(release): ... [skip ci]`), and push it back to the repository.
 - The bump script used by the workflow is located at `.github/scripts/bump_version.sh`.
 
 Notes:

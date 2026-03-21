@@ -24,7 +24,7 @@ echo "$new" > "$FILE"
 git add "$FILE"
 git config user.name "github-actions[bot]"
 git config user.email "github-actions[bot]@users.noreply.github.com"
-if git commit -m "Bump version to ${new} [skip ci]"; then
+if git commit -m "chore(release): bump version to ${new} [skip ci]"; then
   git push
 else
   echo "No changes to commit."

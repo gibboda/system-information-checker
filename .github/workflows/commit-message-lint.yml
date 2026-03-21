@@ -1,0 +1,35 @@
+name: Enforce Conventional Commits
+
+on:
+  pull_request:
+  push:
+
+jobs:
+  commit-messages:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Determine commit range for pull requests
+        if: github.event_name == 'pull_request'
+        run: |
+          echo "BASE_REF=${{ github.event.pull_request.base.sha }}" >> "$GITHUB_ENV"
+          echo "HEAD_REF=${{ github.event.pull_request.head.sha }}" >> "$GITHUB_ENV"
+
+      - name: Determine commit range for pushes
+        if: github.event_name == 'push'
+        run: |
+          if [ "${{ github.event.before }}" = "0000000000000000000000000000000000000000" ]; then
+            echo "BASE_REF=$(git rev-list --max-parents=0 HEAD | tail -n 1)" >> "$GITHUB_ENV"
+          else
+            echo "BASE_REF=${{ github.event.before }}" >> "$GITHUB_ENV"
+          fi
+          echo "HEAD_REF=${{ github.sha }}" >> "$GITHUB_ENV"
+
+      - name: Validate commit messages
+        run: |
+          chmod +x .github/scripts/validate_commit_messages.sh
+          ./.github/scripts/validate_commit_messages.sh "$BASE_REF" "$HEAD_REF"
