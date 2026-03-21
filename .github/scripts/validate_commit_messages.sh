@@ -32,7 +32,7 @@ fi
 
 pattern='^(feat|fix|docs|style|refactor|perf|test|build|ci|chore|revert)(\([a-z0-9._/-]+\))?(!)?: .+'
 release_pattern='^chore\(release\): bump version to [0-9]+\.[0-9]+\.[0-9]+ \[skip ci\]$'
-merge_pattern='^Merge( branch| pull request)'
+merge_pattern='^Merge (branch |pull request |remote-tracking branch |tag )'
 
 failures=0
 
