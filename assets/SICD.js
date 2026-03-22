@@ -124,8 +124,6 @@ var icons = {
  * @param {Object} systemInfo - The system information object containing browser and OS details.
  */
 function showBrowserInfo(systemInfo) {
-  var getCurrentPage = "Dashboard";
-
   var browser, version, browserHTML, getImageSrc;
 
   /* Get the browser and then convert it to lowercase */
@@ -190,8 +188,6 @@ function sanitize(input) {
  * @param {Object} systemInfo - The system information object containing browser and OS details.
  */
 function showOpSysInfo(systemInfo) {
-  var getCurrentPage = "Dashboard";
-
   var opsys, version, browserHTML, getImageSrc, opsysimagesrc, versionimagesrc;
 
   if (systemInfo.os.name.split(" ")[1] == "NT") {
