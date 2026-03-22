@@ -105,4 +105,19 @@ function loadScript(userAgent) {
   assert.strictEqual(indexHtml.replace(/\r\n/g, '\n').trim(), sicdHtml.replace(/\r\n/g, '\n').trim(), 'index.html should mirror SICD.html so the default route renders the dashboard');
 })();
 
+(function testOnlyOneDeploymentWorkflow() {
+  const workflowsDir = path.join(__dirname, '..', '.github', 'workflows');
+  assert.ok(fs.existsSync(workflowsDir), '.github/workflows directory should exist');
+  const files = fs.readdirSync(workflowsDir).filter(function (f) {
+    return f.endsWith('.yml') || f.endsWith('.yaml');
+  });
+  const deployWorkflows = files.filter(function (f) {
+    const content = fs.readFileSync(path.join(workflowsDir, f), 'utf8');
+    return content.split(/\r?\n/).some(function (line) {
+      return /^\s*uses:\s*actions\/deploy-pages@/.test(line);
+    });
+  });
+  assert.strictEqual(deployWorkflows.length, 1, 'There should be exactly one deployment workflow using actions/deploy-pages');
+})();
+
 console.log('All SICD.js tests passed.');
