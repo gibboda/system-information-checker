@@ -72,6 +72,31 @@ function loadScript(userAgent) {
   assert.strictEqual(context.isVersionAtLeast('', '1'), false, 'Empty version string should not satisfy a non-zero minimum');
 })();
 
+
+(function testFirefoxTwoSegmentVersionIsDetectedAndSupported() {
+  const { context, browserInfoHtml } = loadScript(
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 14_7_4; rv:135.0) Gecko/20100101 Firefox/135.0'
+  );
+  const systemInfo = context.getSystemInfo();
+  assert.strictEqual(systemInfo.browser.name, 'Firefox', 'Firefox UA should be detected even when it reports a two-segment version');
+  assert.strictEqual(systemInfo.browser.version, '135.0', 'Firefox version should preserve the detected two-segment value');
+  browserInfoHtml.length = 0;
+  context.showBrowserInfo(systemInfo);
+  assert.ok(browserInfoHtml[0].indexOf('sys-alert-success') !== -1, 'Supported Firefox should render a success alert');
+})();
+
+(function testSafariTwoSegmentVersionIsDetectedAndSupported() {
+  const { context, browserInfoHtml } = loadScript(
+    'Mozilla/5.0 (Macintosh; Intel Mac OS X 15_3_0) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/18.0 Safari/605.1.15'
+  );
+  const systemInfo = context.getSystemInfo();
+  assert.strictEqual(systemInfo.browser.name, 'Safari', 'Safari UA should be detected even when it reports a two-segment version');
+  assert.strictEqual(systemInfo.browser.version, '18.0', 'Safari version should preserve the detected two-segment value');
+  browserInfoHtml.length = 0;
+  context.showBrowserInfo(systemInfo);
+  assert.ok(browserInfoHtml[0].indexOf('sys-alert-success') !== -1, 'Supported Safari should render a success alert');
+})();
+
 (function testUnsupportedBrowserRendersErrorState() {
   const { context, browserInfoHtml } = loadScript(
     'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/99.0.4844.51 Safari/537.36'
