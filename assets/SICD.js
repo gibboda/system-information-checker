@@ -139,17 +139,7 @@ var icons = {
   "macosx14.7.4": "images/operating_systems/macOS_Sonoma.png",
   "macosx15": "images/operating_systems/macOS_Sequoia.png",
   "macosx15.3.0": "images/operating_systems/macOS_Sequoia.png",
-  // macOS 16 - 26
-  "macosx16": "images/operating_systems/macOS_16.png",
-  "macosx17": "images/operating_systems/macOS_17.png",
-  "macosx18": "images/operating_systems/macOS_18.png",
-  "macosx19": "images/operating_systems/macOS_19.png",
-  "macosx20": "images/operating_systems/macOS_20.png",
-  "macosx21": "images/operating_systems/macOS_21.png",
-  "macosx22": "images/operating_systems/macOS_22.png",
-  "macosx23": "images/operating_systems/macOS_23.png",
-  "macosx24": "images/operating_systems/macOS_24.png",
-  "macosx25": "images/operating_systems/macOS_25.png",
+  // macOS 26 Tahoe
   "macosx26": "images/operating_systems/macOS_26.png"
 };
 

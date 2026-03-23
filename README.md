@@ -27,7 +27,7 @@ A lightweight web-based dashboard that detects and displays browser and operatin
 - OS X 10.10 (Yosemite), 10.11 (El Capitan)
 - macOS 10.12 (Sierra), 10.13 (High Sierra), 10.14 (Mojave), 10.15 (Catalina)
 - macOS 11 (Big Sur), 12 (Monterey), 13 (Ventura), 14 (Sonoma), 15 (Sequoia)
-- macOS 16-26 (future versions including Tahoe)
+- macOS 26 (Tahoe)
 
 ## Installation
 
