@@ -107,16 +107,50 @@ var icons = {
   "windowsnt10.0": "images/operating_systems/Windows_10.png",
   "windowsnt6.3": "images/operating_systems/Windows_8.png",
   "windowsnt6.1": "images/operating_systems/Windows_7.png",
-  "macosx10.14.0": "images/operating_systems/OS_X_Mojave.png",
-  "macosx10.13.6": "images/operating_systems/OS_X_High_Sierra.png",
-  "macosx10.12.6": "images/operating_systems/OS_X_Sierra.png",
-  "macosx10.11.6": "images/operating_systems/OS_X_EL_Capitan.png",
+  // Mac OS X 10.5 - 10.9
+  "macosx10.5": "images/operating_systems/OS_X_Leopard.png",
+  "macosx10.6": "images/operating_systems/OS_X_Snow_Leopard.png",
+  "macosx10.7": "images/operating_systems/OS_X_Lion.png",
+  "macosx10.8": "images/operating_systems/OS_X_Mountain_Lion.png",
+  "macosx10.9": "images/operating_systems/OS_X_Mavericks.png",
+  // OS X 10.10 - 10.11
+  "macosx10.10": "images/operating_systems/OS_X_Yosemite.png",
   "macosx10.10.5": "images/operating_systems/OS_X_Yosemite.png",
-  "macosx10.14": "images/operating_systems/OS_X_Mojave.png",
-  "macosx10.13": "images/operating_systems/OS_X_High_Sierra.png",
-  "macosx10.12": "images/operating_systems/OS_X_Sierra.png",
   "macosx10.11": "images/operating_systems/OS_X_EL_Capitan.png",
-  "macosx10.10": "images/operating_systems/OS_X_Yosemite.png"
+  "macosx10.11.6": "images/operating_systems/OS_X_EL_Capitan.png",
+  // macOS 10.12 - 10.14
+  "macosx10.12": "images/operating_systems/OS_X_Sierra.png",
+  "macosx10.12.6": "images/operating_systems/OS_X_Sierra.png",
+  "macosx10.13": "images/operating_systems/OS_X_High_Sierra.png",
+  "macosx10.13.6": "images/operating_systems/OS_X_High_Sierra.png",
+  "macosx10.14": "images/operating_systems/OS_X_Mojave.png",
+  "macosx10.14.0": "images/operating_systems/OS_X_Mojave.png",
+  // macOS 10.15
+  "macosx10.15": "images/operating_systems/macOS_Catalina.png",
+  "macosx10.15.7": "images/operating_systems/macOS_Catalina.png",
+  // macOS 11 - 15
+  "macosx11": "images/operating_systems/macOS_Big_Sur.png",
+  "macosx11.7.10": "images/operating_systems/macOS_Big_Sur.png",
+  "macosx12": "images/operating_systems/macOS_Monterey.png",
+  "macosx12.7.6": "images/operating_systems/macOS_Monterey.png",
+  "macosx13": "images/operating_systems/macOS_Ventura.png",
+  "macosx13.7.4": "images/operating_systems/macOS_Ventura.png",
+  "macosx14": "images/operating_systems/macOS_Sonoma.png",
+  "macosx14.7.4": "images/operating_systems/macOS_Sonoma.png",
+  "macosx15": "images/operating_systems/macOS_Sequoia.png",
+  "macosx15.3.0": "images/operating_systems/macOS_Sequoia.png",
+  // macOS 16 - 26
+  "macosx16": "images/operating_systems/macOS_16.png",
+  "macosx17": "images/operating_systems/macOS_17.png",
+  "macosx18": "images/operating_systems/macOS_18.png",
+  "macosx19": "images/operating_systems/macOS_19.png",
+  "macosx20": "images/operating_systems/macOS_20.png",
+  "macosx21": "images/operating_systems/macOS_21.png",
+  "macosx22": "images/operating_systems/macOS_22.png",
+  "macosx23": "images/operating_systems/macOS_23.png",
+  "macosx24": "images/operating_systems/macOS_24.png",
+  "macosx25": "images/operating_systems/macOS_25.png",
+  "macosx26": "images/operating_systems/macOS_26.png"
 };
 
 /**

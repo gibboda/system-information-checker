@@ -23,7 +23,11 @@ A lightweight web-based dashboard that detects and displays browser and operatin
 ## Supported Operating Systems
 
 - Windows NT 11.0, 10.0, 6.3, 6.1
-- macOS 15.x, 14.x, 13.x, 12.x, 11.x, 10.15.x, 10.14.x, 10.13.x, 10.12.x, 10.11.x, 10.10.x
+- Mac OS X 10.5 (Leopard), 10.6 (Snow Leopard), 10.7 (Lion), 10.8 (Mountain Lion), 10.9 (Mavericks)
+- OS X 10.10 (Yosemite), 10.11 (El Capitan)
+- macOS 10.12 (Sierra), 10.13 (High Sierra), 10.14 (Mojave), 10.15 (Catalina)
+- macOS 11 (Big Sur), 12 (Monterey), 13 (Ventura), 14 (Sonoma), 15 (Sequoia)
+- macOS 16-26 (future versions including Tahoe)
 
 ## Installation
 
