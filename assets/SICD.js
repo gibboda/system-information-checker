@@ -24,10 +24,10 @@ function getSystemInfo() {
     { name: "cldb", pattern: /(cldb)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
     { name: "cmac", pattern: /(cmac)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
     { name: "guardianbrowser", pattern: /(guardianbrowser)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+\.\d+))/i },
-    { name: "Edge", pattern: /(Edg|Edge)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
-    { name: "Chrome", pattern: /(chrome|crios)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
-    { name: "Safari", pattern: /version\/((\d+\.\d+\.\d+\.\d+)).*safari/i },
-    { name: "Firefox", pattern: /(firefox)\/?\s*((\d+\.\d+\.\d+\.\d+))/i }
+    { name: "Edge", pattern: /(Edg|Edge)\/?\s*((\d+(?:\.\d+){1,3}))/i },
+    { name: "Chrome", pattern: /(chrome|crios)\/?\s*((\d+(?:\.\d+){1,3}))/i },
+    { name: "Safari", pattern: /version\/((\d+(?:\.\d+){1,3})).*safari/i },
+    { name: "Firefox", pattern: /(firefox)\/?\s*((\d+(?:\.\d+){1,3}))/i }
   ];
 
   // Check for browser match
@@ -124,8 +124,6 @@ var icons = {
  * @param {Object} systemInfo - The system information object containing browser and OS details.
  */
 function showBrowserInfo(systemInfo) {
-  var getCurrentPage = "Dashboard";
-
   var browser, version, browserHTML, getImageSrc;
 
   /* Get the browser and then convert it to lowercase */
@@ -190,8 +188,6 @@ function sanitize(input) {
  * @param {Object} systemInfo - The system information object containing browser and OS details.
  */
 function showOpSysInfo(systemInfo) {
-  var getCurrentPage = "Dashboard";
-
   var opsys, version, browserHTML, getImageSrc, opsysimagesrc, versionimagesrc;
 
   if (systemInfo.os.name.split(" ")[1] == "NT") {
