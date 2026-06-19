@@ -24,10 +24,10 @@ function getSystemInfo() {
     { name: "cldb", pattern: /(cldb)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
     { name: "cmac", pattern: /(cmac)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
     { name: "guardianbrowser", pattern: /(guardianbrowser)\/?\s*((\d+\.\d+\.\d+\.\d+)|(\d+\.\d+)|(\d+\.\d+\.\d+))/i },
-    { name: "Edge", pattern: /(Edg|Edge)\/?\s*((\d+(?:\.\d+){1,3}))/i },
-    { name: "Chrome", pattern: /(chrome|crios)\/?\s*((\d+(?:\.\d+){1,3}))/i },
-    { name: "Safari", pattern: /version\/((\d+(?:\.\d+){1,3})).*safari/i },
-    { name: "Firefox", pattern: /(firefox)\/?\s*((\d+(?:\.\d+){1,3}))/i }
+    { name: "Edge", pattern: /(Edg|Edge)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
+    { name: "Chrome", pattern: /(chrome|crios)\/?\s*((\d+\.\d+\.\d+\.\d+))/i },
+    { name: "Safari", pattern: /version\/((\d+\.\d+\.\d+\.\d+)).*safari/i },
+    { name: "Firefox", pattern: /(firefox)\/?\s*((\d+\.\d+\.\d+\.\d+))/i }
   ];
 
   // Check for browser match
@@ -107,16 +107,40 @@ var icons = {
   "windowsnt10.0": "images/operating_systems/Windows_10.png",
   "windowsnt6.3": "images/operating_systems/Windows_8.png",
   "windowsnt6.1": "images/operating_systems/Windows_7.png",
-  "macosx10.14.0": "images/operating_systems/OS_X_Mojave.png",
-  "macosx10.13.6": "images/operating_systems/OS_X_High_Sierra.png",
-  "macosx10.12.6": "images/operating_systems/OS_X_Sierra.png",
-  "macosx10.11.6": "images/operating_systems/OS_X_EL_Capitan.png",
+  // Mac OS X 10.5 - 10.9
+  "macosx10.5": "images/operating_systems/OS_X_Leopard.png",
+  "macosx10.6": "images/operating_systems/OS_X_Snow_Leopard.png",
+  "macosx10.7": "images/operating_systems/OS_X_Lion.png",
+  "macosx10.8": "images/operating_systems/OS_X_Mountain_Lion.png",
+  "macosx10.9": "images/operating_systems/OS_X_Mavericks.png",
+  // OS X 10.10 - 10.11
+  "macosx10.10": "images/operating_systems/OS_X_Yosemite.png",
   "macosx10.10.5": "images/operating_systems/OS_X_Yosemite.png",
-  "macosx10.14": "images/operating_systems/OS_X_Mojave.png",
-  "macosx10.13": "images/operating_systems/OS_X_High_Sierra.png",
-  "macosx10.12": "images/operating_systems/OS_X_Sierra.png",
   "macosx10.11": "images/operating_systems/OS_X_EL_Capitan.png",
-  "macosx10.10": "images/operating_systems/OS_X_Yosemite.png"
+  "macosx10.11.6": "images/operating_systems/OS_X_EL_Capitan.png",
+  // macOS 10.12 - 10.14
+  "macosx10.12": "images/operating_systems/OS_X_Sierra.png",
+  "macosx10.12.6": "images/operating_systems/OS_X_Sierra.png",
+  "macosx10.13": "images/operating_systems/OS_X_High_Sierra.png",
+  "macosx10.13.6": "images/operating_systems/OS_X_High_Sierra.png",
+  "macosx10.14": "images/operating_systems/OS_X_Mojave.png",
+  "macosx10.14.0": "images/operating_systems/OS_X_Mojave.png",
+  // macOS 10.15
+  "macosx10.15": "images/operating_systems/macOS_Catalina.png",
+  "macosx10.15.7": "images/operating_systems/macOS_Catalina.png",
+  // macOS 11 - 15
+  "macosx11": "images/operating_systems/macOS_Big_Sur.png",
+  "macosx11.7.10": "images/operating_systems/macOS_Big_Sur.png",
+  "macosx12": "images/operating_systems/macOS_Monterey.png",
+  "macosx12.7.6": "images/operating_systems/macOS_Monterey.png",
+  "macosx13": "images/operating_systems/macOS_Ventura.png",
+  "macosx13.7.4": "images/operating_systems/macOS_Ventura.png",
+  "macosx14": "images/operating_systems/macOS_Sonoma.png",
+  "macosx14.7.4": "images/operating_systems/macOS_Sonoma.png",
+  "macosx15": "images/operating_systems/macOS_Sequoia.png",
+  "macosx15.3.0": "images/operating_systems/macOS_Sequoia.png",
+  // macOS 26 Tahoe
+  "macosx26": "images/operating_systems/macOS_26.png"
 };
 
 /**
@@ -124,6 +148,8 @@ var icons = {
  * @param {Object} systemInfo - The system information object containing browser and OS details.
  */
 function showBrowserInfo(systemInfo) {
+  var getCurrentPage = "Dashboard";
+
   var browser, version, browserHTML, getImageSrc;
 
   /* Get the browser and then convert it to lowercase */
@@ -188,6 +214,8 @@ function sanitize(input) {
  * @param {Object} systemInfo - The system information object containing browser and OS details.
  */
 function showOpSysInfo(systemInfo) {
+  var getCurrentPage = "Dashboard";
+
   var opsys, version, browserHTML, getImageSrc, opsysimagesrc, versionimagesrc;
 
   if (systemInfo.os.name.split(" ")[1] == "NT") {
